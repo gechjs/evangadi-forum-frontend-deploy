@@ -28,7 +28,8 @@ function LoginForm() {
         },
         body: JSON.stringify({ email, password }),
       });
-      const {data} = await response
+      const {data} = response
+      console.log(data)
       if (!response.ok) {
         throw new Error(data.message || "Network response was not ok");
       }
