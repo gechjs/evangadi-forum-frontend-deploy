@@ -51,12 +51,12 @@ const AuthWrapper = ({ setAuth }) => {
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     setIsAuthenticated(true);
+  //   }
+  // }, []);
 
   return (
     <EditProvider>

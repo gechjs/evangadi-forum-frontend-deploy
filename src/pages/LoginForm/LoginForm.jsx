@@ -19,28 +19,24 @@ function LoginForm() {
     e.preventDefault();
     const email = emailDom.current.value;
     const password = passwordDom.current.value;
-
-    if (!email || !password) {
-      alert("Please provide all required information");
-      return;
-    }
-
+  
     try {
-      const { data } = await axiosInstance.post("/users/login", {
-        email: email,
-        password: password,
+      const response = await fetch("https://evangadi-forum-backend-xvz1.onrender.com/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
       });
+      const {data} = await response
+      if (!response.ok) {
+        throw new Error(data.message || "Network response was not ok");
+      }
       alert("Login Successfully!");
-      const user = {
-        username: data.username,
-        userid: data.userId,
-      };
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/");
     } catch (error) {
-      alert("Something went wrong");
-      console.log(error.stack);
+      alert("Login failed: " + error.message);
+      console.error("Login error:", error);
     }
   };
 
