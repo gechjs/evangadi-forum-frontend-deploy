@@ -1,0 +1,106 @@
+/* Popup.css */
+.popup__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 10;
+}
+
+.popup__container {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+.close__button {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.popup__content {
+  background-color: #3b455a;
+  opacity: 0.7;
+  border-radius: 15px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  width: 50vw;
+}
+
+.popup__title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+}
+
+.question__section {
+  width: 90%;
+}
+
+.question__section h2 {
+  font-size: 1.7vw; /* Enlarged font */
+  margin-bottom: 5%;
+  color: #fff;
+}
+
+hr {
+  width: 20%;
+  margin-left: 0;
+  margin-bottom: 1%;
+}
+
+.question__section label {
+  color: #fff;
+  font-size: 1.3vw;
+}
+
+.post__answer__section textarea {
+  width: 90%;
+  height: 150px; /* Increased textarea size */
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px; /* Enlarged text */
+}
+
+.question__title textarea {
+  width: 70%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px; /* Enlarged text */
+}
+
+.question__title {
+  margin-bottom: 1%;
+}
+
+.post__button {
+  align-self: flex-start;
+  padding: 12px 24px; /* Enlarged button */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Enlarged button text */
+}
+
+.post__button:hover {
+  background-color: #0056b3;
+}

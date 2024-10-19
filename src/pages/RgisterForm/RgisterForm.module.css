@@ -1,0 +1,66 @@
+/* from box */
+.form__container {
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 48.5%;
+  background-color: white;
+  text-align: center;
+  padding: 40px;
+  margin-top: 5%;
+}
+
+.form__container h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+input {
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form__container .option {
+  margin-bottom: 40px;
+  color: #67748e;
+}
+
+form .flname {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form .flname input {
+  width: 49%;
+}
+
+.join_btn {
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #3656d6;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #666;
+}

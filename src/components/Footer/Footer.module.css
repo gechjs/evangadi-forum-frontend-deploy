@@ -1,0 +1,102 @@
+/*  ***************** Footer ************ */
+
+footer {
+  background-color: #3b455a;
+  padding: 50px 0;
+  color: #fff;
+}
+
+.footer__container {
+  margin: 0 auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer__logo img {
+  width: 200px;
+}
+
+.footer__social a {
+  margin: 0 10px;
+  color: #3b455a;
+  font-size: 20px;
+}
+.social_icons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0 15px 5px;
+  width: 190px;
+  
+}
+.social_icons div{
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 300px;
+  height: 50px;
+  width: 50px;
+}
+
+.social_icons div:hover{
+  background-color: white;
+  color: #3b455a;
+  border: 1px solid #3b455a;
+}
+.footer__social a:hover {
+  color: #f48024;
+}
+
+.footer__links,
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__links h3,
+.footer__contact h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.footer__links ul {
+  list-style: none;
+}
+
+.footer__links ul li {
+  margin-bottom: 10px;
+}
+
+.footer__links ul li a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer__links ul li a:hover {
+  color: #fff;
+}
+
+.footer__contact p {
+  margin-bottom: 10px;
+}
+
+.footer__contact p a {
+  color: #ccccccb4;
+  text-decoration: none;
+}
+
+.footer__contact p a:hover {
+  color: #f48024;
+}
+@media (min-width: 768px) {
+  .footer__container {
+   flex-direction: row;
+  }
+}
+/* -------------- // --------------- */

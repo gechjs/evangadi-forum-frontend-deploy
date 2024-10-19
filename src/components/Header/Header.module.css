@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f8f8f8;
+}
+
+/* Header */
+
+header {
+  box-shadow: 0 2px 4px rgba(81, 107, 152, 0.16);
+  background-color: #fff;
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.header__container {
+  margin: 0 auto;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__links {
+  width: 360px;
+  display: none;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header__links a {
+  padding: 12px;
+  color: #666;
+}
+
+.header__links .join_btn {
+  padding: 10px 60px;
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.log__out {
+  color: rgb(65, 28, 1);
+  font-size: 20px;
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.header__links .join_btn:hover {
+  background-color: #3656d6;
+  text-decoration: none;
+}
+
+/* drop down start here */
+
+.header__dropdown {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  background-color: #fff;
+  height: 100%;
+  padding: 16px;
+  width: 400px;
+  transition: right 0.9s ease-out;
+  z-index: 10;
+}
+
+.header__dropdown.show {
+  right: 0;
+  box-shadow: -400px 0 9px 1500px rgba(0, 0, 0, 0.5);
+  transition: right 0.7s ease-in, box-shadow 1s ease-in-out;
+}
+
+.dropdown_content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dropdown_content a {
+  padding: 12px;
+  color: #666;
+  transition: color 0.3s;
+}
+
+.dropdown_content a:hover {
+  color: #4a6cf7;
+}
+.join_btn_brop {
+  padding: 10px 60px;
+  background-color: #4a6cf7;
+  color: white !important;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 180px;
+  text-align: center;
+}
+.join_btn_brop:hover {
+  background-color: #3656d6;
+  text-decoration: none;
+}
+
+.termintate_icon,
+.menu_icon {
+  cursor: pointer;
+  transition: transform 0.6s ease;
+}
+
+.menu_icon.clicked {
+  transform: rotate(90deg);
+}
+
+@media screen and (min-width: 350px) {
+  .header__container {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .menu_icon {
+    display: none;
+  }
+  .header__container {
+    width: 960px;
+  }
+  .header__links {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .header__container {
+    width: 1140px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .header__container {
+    width: 1300px;
+  }
+}
+
+/* -------------- // --------------- */
