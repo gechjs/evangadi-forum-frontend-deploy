@@ -134,7 +134,7 @@ const AnswerPage = () => {
       <div>
         {posted && (
           <p className={classes.submissionAlert}>
-            question posted successfully
+            answer posted successfully
           </p>
         )}
       </div>
