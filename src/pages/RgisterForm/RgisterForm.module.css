@@ -1,17 +1,17 @@
-/* from box */
 .form__container {
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  width: 48.5%;
+  width: 100%;
+  max-width: 480px;
   background-color: white;
   text-align: center;
   padding: 40px;
-  margin-top: 5%;
+  margin: 5% auto;
 }
 
 .form__container h3 {
-  font-size: 16px;
+  font-size: 1.25rem;
   margin-bottom: 20px;
   color: #666;
 }
@@ -21,7 +21,7 @@ input {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .form__container .option {
@@ -29,15 +29,16 @@ input {
   color: #67748e;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
 form .flname {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
+  gap: 10px;
 }
 
 form .flname input {
@@ -49,7 +50,7 @@ form .flname input {
   color: white;
   border: none;
   padding: 12px;
-  font-size: 16px;
+  font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 10px;
@@ -60,11 +61,44 @@ button:hover {
 }
 
 label {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-bottom: 15px;
   color: #666;
 }
+
 .errorMessage {
   color: red;
   margin-bottom: 16px;
+}
+@media (max-width: 468px){
+  form .flname {
+    flex-direction: column;
+  }
+}
+@media (max-width: 768px) {
+  .form__container {
+    padding: 20px;
+  }
+
+  .form__container h3 {
+    font-size: 1rem;
+  }
+
+  input {
+    font-size: 0.875rem;
+  }
+
+  .join_btn {
+    font-size: 0.875rem;
+  }
+
+  label {
+    font-size: 0.75rem;
+  }
+
+
+
+  form .flname input {
+    width: 100%;
+  }
 }

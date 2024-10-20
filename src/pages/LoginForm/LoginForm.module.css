@@ -88,6 +88,6 @@ button:hover {
 
 @media (min-width: 768px) {
   .login__form__container{
-    width: 48.5%;
+    width: 98%;
   }
 }
