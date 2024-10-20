@@ -56,6 +56,8 @@
   margin-bottom: 10px;
 }
 
+
+
 button:hover {
   background-color: #3656d6;
 }
@@ -65,6 +67,24 @@ button:hover {
   text-align: right;
   font-size: 18px;
 }
+.errorMessage {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid red; 
+  border-radius: 5px;
+  background-color: #fdd; 
+  color: red; 
+}
+
+.successMessage {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid green; 
+  border-radius: 5px;
+  background-color: #dfd;
+  color: green;
+}
+
 
 @media (min-width: 768px) {
   .login__form__container{

@@ -28,11 +28,9 @@ const AuthWrapper = ({ setAuth }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (!response.ok) {
-        navigate("/login");
-        throw new Error("Failed to load");
-      }
+
       const { data } = response;
+      setAuth(true)
       console.log("User data:", data);
       setUser(data);
     } catch (err) {
@@ -45,7 +43,7 @@ const AuthWrapper = ({ setAuth }) => {
     checkuser();
   }, []);
 
-  return null; // No UI needed here
+  return null;
 };
 
 function App() {
@@ -67,8 +65,11 @@ function App() {
 
         <Routes>
           {/* Public routes */}
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RgisterForm />} />
+          <Route path="/login" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
+          <Route
+            path="/register"
+            element={<RgisterForm  />}
+          />
           {/* Protected routes */}
           <Route
             path="/"

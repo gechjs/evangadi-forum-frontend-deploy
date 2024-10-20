@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import classes from "./RgisterForm.module.css";
-import { useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../../axios/axiosConfig";
 import Auth from "../../components/auth/Auth";
+import { ClipLoader } from "react-spinners"; 
 
 function RgisterForm() {
   const navigate = useNavigate();
@@ -12,6 +12,8 @@ function RgisterForm() {
   const lastNameDom = useRef();
   const emailDom = useRef();
   const passwordDom = useRef();
+  const [loading, setLoading] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,77 +24,60 @@ function RgisterForm() {
     const password = passwordDom.current.value;
 
     if (!username || !firstName || !secondName || !email || !password) {
-      alert("Please provide all required information");
+      setErrorMessage("Please provide all  information");
       return;
     }
 
+    setLoading(true); 
+    setErrorMessage(""); 
+
     try {
       await axiosInstance.post("/users/register", {
-        // Use axiosInstance here
-        username: username,
+        username,
         firstname: firstName,
         lastname: secondName,
-        email: email,
-        password: password,
+        email,
+        password,
       });
-      alert("Registered Successfully!");
+   
       navigate("/login");
     } catch (error) {
-      alert("Something went wrong");
       console.log(error);
+      const errorMessage = error.response?.data?.msg || "Something went wrong";
+      setErrorMessage(errorMessage);
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <Auth>
       <div className={classes.form__container}>
         <h3>Join the network</h3>
+        {errorMessage && <p className={classes.errorMessage}>{errorMessage}</p>}
         <p className={classes.option}>
           Already have an account? <Link to={"/login"}>Sign in</Link>
         </p>
         <form onSubmit={handleSubmit}>
-          <input
-            ref={userNameDom}
-            type="text"
-            placeholder="username"
-            required
-          />
-
+          <input ref={userNameDom} type="text" placeholder="Username" />
           <div className={classes.flname}>
-            <input
-              ref={firstNameDom}
-              type="text"
-              placeholder="First name"
-              required
-            />
-
-            <input
-              ref={lastNameDom}
-              type="text"
-              placeholder="Last name"
-              required
-            />
+            <input ref={firstNameDom} type="text" placeholder="First name" />
+            <input ref={lastNameDom} type="text" placeholder="Last name" />
           </div>
-          <input
-            ref={emailDom}
-            type="email"
-            placeholder="Email address"
-            required
-          />
-
-          <input
-            ref={passwordDom}
-            type="password"
-            placeholder="Password"
-            required
-          />
-
+          <input ref={emailDom} type="email" placeholder="Email address" />
+          <input ref={passwordDom} type="password" placeholder="Password" />
           <label>
-            <input type="checkbox" required /> I agree to the
+            <input type="checkbox" /> I agree to the
             <a href="#"> privacy policy</a> and
             <a href="#"> terms of service</a>.
           </label>
-          <button className={classes.join_btn} type="submit">
-            Agree and Join
+          <button className={classes.join_btn} type="submit" disabled={loading}>
+            {loading ? (
+              <ClipLoader size={20} color="#fff" loading={loading} />
+            ) : (
+              "Agree and Join"
+            )}
           </button>
         </form>
         <p>
