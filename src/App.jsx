@@ -18,10 +18,15 @@ import { EditProvider } from "./context/EditContext";
 
 const AuthWrapper = ({ setAuth }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  async function checkuser() {
+  async function checkUser() {
     const token = localStorage.getItem("token");
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axiosInstance.get("/users/check", {
         headers: {
@@ -30,31 +35,33 @@ const AuthWrapper = ({ setAuth }) => {
       });
 
       const { data } = response;
-      setAuth(true)
+      setAuth(true);
       console.log("User data:", data);
-      setUser(data);
     } catch (err) {
-      console.log(err);
-      if (err.response?.status === 401) navigate("/login");
+      console.error(err);
+      if (err.response?.status === 401) {
+        navigate("/login");
+      } else {
+        console.error("Error checking user:", err.message);
+      }
+    } finally {
+      setLoading(false);
     }
   }
 
   useEffect(() => {
-    checkuser();
+    checkUser();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Loading state feedback
+  }
 
   return null;
 };
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     setIsAuthenticated(true);
-  //   }
-  // }, []);
 
   return (
     <EditProvider>
@@ -65,36 +72,25 @@ function App() {
 
         <Routes>
           {/* Public routes */}
-          <Route path="/login" element={<LoginForm setIsAuthenticated={setIsAuthenticated} />} />
-          <Route
-            path="/register"
-            element={<RgisterForm  />}
-          />
+          <Route path="/login" element={<LoginForm isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
+          <Route path="/register" element={<RgisterForm />} />
+          
           {/* Protected routes */}
-          <Route
-            path="/"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/ask"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <AskQuestionPage />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/answers/:question_id"
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <AnswerPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/" element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <Home />
+            </ProtectedRoute>
+          } />
+          <Route path="/ask" element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <AskQuestionPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/answers/:question_id" element={
+            <ProtectedRoute isAuthenticated={isAuthenticated}>
+              <AnswerPage />
+            </ProtectedRoute>
+          } />
         </Routes>
         <Footer />
       </Router>
